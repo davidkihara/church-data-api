@@ -1,33 +1,39 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Church</title>
-    
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-    @yield('navigation')
+@section('content')
+    @parent
 
     <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <h1 class="h1">Churches</h1>
+            </div>
+        </div>
+
+        @auth
+            <div class="row mb-5">
+                <div class="col">
+                    <a href="/church" class="btn btn-primary">
+                        Add Church
+                    </a>
+                </div>
+            </div>
+        @endauth
+
         <div class="row">
             @foreach($churches as $church)
-            <a href="/church/{{ $church->id }}">
-                <div class="col-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="p-0">
-                                {{ $church->name }}
-                            </h4>
+                <a href="/church/{{ $church->id }}">
+                    <div class="col-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="p-0">
+                                    {{ $church->name }}
+                                </h4>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
             @endforeach
         </div>
     </div>
-</body>
-</html>
+@endsection

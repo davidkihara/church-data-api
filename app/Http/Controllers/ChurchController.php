@@ -15,7 +15,10 @@ class ChurchController extends Controller
 
     public function viewChurch($id) {
         $church = DB::table('churches')->where('id', $id)->first();
-        return view('church', ['church' => $church]);
+        $church_id = $church->id;
+        $groups = DB::table('groups')->where('church_id', $church_id)->get();
+        $members = DB::table('members')->where('church_id', $church_id)->get();
+        return view('church', ['church' => $church, 'groups' => $groups, 'members' => $members]);
     }
 
     public function createForm(Request $request) {
@@ -26,7 +29,8 @@ class ChurchController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'branch' => 'required',
-            'registration_number' => 'required'
+            'registration_number' => 'required',
+            'user_id' => 'required'
         ]);
 
         Church::create($request->all());

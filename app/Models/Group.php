@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     use HasFactory;
-    public $fillable = ['name'];
+    public $fillable = ['name', 'church_id'];
 }

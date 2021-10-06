@@ -17,6 +17,18 @@
                         Add Church
                     </a>
                 </div>
+
+                <div class="col">
+                    <a href="/group" class="btn btn-primary">
+                        Add Group
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="/member" class="btn btn-primary">
+                        Add Member
+                    </a>
+                </div>
             </div>
         @endauth
 

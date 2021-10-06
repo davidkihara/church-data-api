@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Church extends Model
 {
     use HasFactory;
-    public $fillable = ['name', 'registration_number', 'branch'];
+    public $fillable = ['name', 'registration_number', 'branch', 'user_id'];
 }

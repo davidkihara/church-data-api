@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            Home
+        </a>
+
         @if (Route::has('login'))
             <ul class="navbar-nav ms-auto">
                 @auth

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChurchController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +20,20 @@ Route::get('/', [ChurchController::class, 'viewChurches']);
 
 Route::get('/church/{id}', [ChurchController::class, 'viewChurch']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/church', [ChurchController::class, 'createForm'])->middleware('auth');
 
-Route::get('/church', [ChurchController::class, 'createForm']);
+Route::post('/church', [ChurchController::class, 'ChurchForm'])->name('church.store')->middleware('auth');
 
-Route::post('/church', [ChurchController::class, 'ChurchForm'])->name('church.store');
+Route::get('/group', [GroupController::class, 'createForm'])->middleware('auth');
+
+Route::post('/group', [GroupController::class, 'GroupForm'])->name('group.store')->middleware('auth');
+
+Route::get('/group/{id}', [GroupController::class, 'viewGroup']);
+
+Route::get('/member', [MemberController::class, 'createForm'])->middleware('auth');
+
+Route::post('/member', [MemberController::class, 'MemberForm'])->name('member.store')->middleware('auth');
+
+Route::get('/member/{id}', [MemberController::class, 'viewMember']);
 
 require __DIR__.'/auth.php';
